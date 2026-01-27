@@ -1,16 +1,37 @@
+// {
+//   "files": [],
+//   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     },
+//     "noImplicitAny": false,
+//     "noUnusedParameters": false,
+//     "skipLibCheck": true,
+//     "allowJs": true,
+//     "noUnusedLocals": false,
+//     "strictNullChecks": false
+//   }
+// }
+
 {
-  "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  
+ 
   "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
+    "strict": true,
     "skipLibCheck": true,
-    "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
-  }
+    "allowJs": false
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist", "src/**/*.spec.ts", "src/**/*.spec.tsx"]
 }
