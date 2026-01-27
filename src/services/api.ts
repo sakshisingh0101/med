@@ -213,7 +213,7 @@ export interface MedicineSafetyResponseData {
 export const checkMedicineSafety = async (
   request: MedicineSafetyRequest
 ): Promise<MedicineSafetyResponseData> => {
-  const res = await fetch("http://localhost:3000/api/v1/process/ruleEngine", {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/process/ruleEngine`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(request),
