@@ -1,15 +1,18 @@
-md
-🩺 MedGuard Frontend
+# 🩺 MedGuard Frontend  
+**User Interface for Medicine Safety & Actionable Guidance**
 
-User Interface for Medicine Safety & Actionable Guidance
+---
 
-📌 Overview
+## 📌 Overview
 
-The MedGuard Frontend provides an intuitive and guided user experience for uploading prescriptions, entering health context, and viewing personalized medicine safety reports.
+The **MedGuard Frontend** provides an intuitive and guided user experience for uploading prescriptions, entering health context, and viewing personalized medicine safety reports.
 
-It consumes the MedGuard backend APIs and dynamically renders results based on backend-driven logic.
+It consumes the **MedGuard Backend APIs** and dynamically renders results based on backend-driven logic.
 
-👤 User Flow (End-to-End)
+---
+
+## 👤 User Flow (End-to-End)
+
 Landing Page
    ↓
 Login / Signup
@@ -26,104 +29,99 @@ Check Medicine Safety
    ↓
 Result Page (Actionable Plan)
 
-🔐 Authentication Flow
 
-Landing page contains Login / Signup
+---
 
-AuthContext manages authentication state
+## 🔐 Authentication Flow
 
-Protected routes restrict access to dashboard & results
+- Landing page contains **Login / Signup**
+- `AuthContext` manages authentication state
+- **Protected routes** restrict access to Dashboard & Results
+- Logout clears session and redirects to Landing Page
 
-Logout clears session and redirects to landing page
+---
 
-📷 Image Upload & OCR Trigger
+## 📷 Image Upload & OCR Trigger
 
-User uploads medicine or prescription image
+- User uploads a medicine or prescription image
+- OCR API is triggered **immediately**
+- OCR response is stored in `MedicineContext`
+- User proceeds only after **successful OCR extraction**
 
-OCR API is triggered immediately
+---
 
-OCR response is stored in MedicineContext
+## 🧠 State Management
 
-User proceeds only after OCR success
+### Contexts Used
 
-🧠 State Management
-Contexts Used
-AuthContext
+#### 🔑 AuthContext
+- Login / Logout state
+- User session management
 
-Login / Logout state
+#### 💊 MedicineContext
+- OCR result
+- User health context
+- Final processed medicine safety response
 
-User session management
+---
 
-MedicineContext
+## 📄 Pages Overview
 
-OCR result
+### 🏠 Landing Page
+- Product introduction
+- Call-to-Action for Login / Signup
 
-User health context
+### 📊 Dashboard
+- Image upload
+- User context input:
+  - Age
+  - Health conditions
+  - Food state
+  - Time
+- **Check Safety** action
 
-Final processed medicine safety response
+### 📋 Result Page
+- Overall confidence indicator
+- Multiple medicine cards
+- Risk levels, schedules, and warnings
+- English & Hindi instructions
 
-📄 Pages Overview
-Landing Page
+---
 
-Product introduction
-
-CTA for login/signup
-
-Dashboard
-
-Image upload
-
-User context input (age, conditions, food state, time)
-
-“Check Safety” action
-
-Result Page
-
-Overall confidence indicator
-
-Multiple medicine cards
-
-Risk levels, schedules, warnings
-
-English & Hindi instructions
-
-🧾 Result Card Features
+## 🧾 Result Card Features
 
 Each medicine card displays:
 
-Medicine name & dosage
+- Medicine name & dosage  
+- Risk level (visual indicator)  
+- Purpose of medicine  
+- Step-by-step intake schedule  
+- Warnings & alerts  
+- Prescription availability notice  
 
-Risk level (visual indicator)
+All UI elements are **backend-driven**, ensuring consistency with rule-engine logic.
 
-Purpose of medicine
+---
 
-Step-by-step intake schedule
+## ⚠️ Error Handling
 
-Warnings & alerts
+- Graceful handling of empty or missing results
+- Safe rendering using optional chaining
+- User-friendly fallback messages
 
-Prescription availability notice
+---
 
-All UI elements are backend-driven, ensuring consistency with rules.
+## 🛠️ Environment Setup
 
-⚠️ Error Handling
+Create a `.env` file:
 
-Graceful handling of empty or missing results
-
-Safe rendering using optional chaining
-
-User-friendly fallback messages
-
-🛠️ Environment Setup
-
-Create a .env file:
-
+```env
 VITE_API_BASE_URL=<backend_base_url>
 
-
-Run locally:
-
+Run locally
 npm install
 npm run dev
+
 
 🚧 Known Limitations
 
@@ -149,8 +147,4 @@ UI accessibility improvements
 
 The MedGuard frontend guides users from prescription upload to actionable medicine safety reports through a clean, backend-driven UI.
 
-Yes, you can!
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
