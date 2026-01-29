@@ -1,70 +1,153 @@
-# Welcome to your Lovable project
+md
+🩺 MedGuard Frontend
 
-## Project info
+User Interface for Medicine Safety & Actionable Guidance
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+📌 Overview
 
-## How can I edit this code?
+The MedGuard Frontend provides an intuitive and guided user experience for uploading prescriptions, entering health context, and viewing personalized medicine safety reports.
 
-There are several ways of editing your application.
+It consumes the MedGuard backend APIs and dynamically renders results based on backend-driven logic.
 
-**Use Lovable**
+👤 User Flow (End-to-End)
+Landing Page
+   ↓
+Login / Signup
+   ↓
+Dashboard
+   ↓
+Upload Prescription / Medicine Image
+   ↓
+OCR Triggered Automatically
+   ↓
+Enter User Health Context
+   ↓
+Check Medicine Safety
+   ↓
+Result Page (Actionable Plan)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+🔐 Authentication Flow
 
-Changes made via Lovable will be committed automatically to this repo.
+Landing page contains Login / Signup
 
-**Use your preferred IDE**
+AuthContext manages authentication state
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Protected routes restrict access to dashboard & results
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Logout clears session and redirects to landing page
 
-Follow these steps:
+📷 Image Upload & OCR Trigger
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+User uploads medicine or prescription image
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+OCR API is triggered immediately
 
-# Step 3: Install the necessary dependencies.
-npm i
+OCR response is stored in MedicineContext
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+User proceeds only after OCR success
+
+🧠 State Management
+Contexts Used
+AuthContext
+
+Login / Logout state
+
+User session management
+
+MedicineContext
+
+OCR result
+
+User health context
+
+Final processed medicine safety response
+
+📄 Pages Overview
+Landing Page
+
+Product introduction
+
+CTA for login/signup
+
+Dashboard
+
+Image upload
+
+User context input (age, conditions, food state, time)
+
+“Check Safety” action
+
+Result Page
+
+Overall confidence indicator
+
+Multiple medicine cards
+
+Risk levels, schedules, warnings
+
+English & Hindi instructions
+
+🧾 Result Card Features
+
+Each medicine card displays:
+
+Medicine name & dosage
+
+Risk level (visual indicator)
+
+Purpose of medicine
+
+Step-by-step intake schedule
+
+Warnings & alerts
+
+Prescription availability notice
+
+All UI elements are backend-driven, ensuring consistency with rules.
+
+⚠️ Error Handling
+
+Graceful handling of empty or missing results
+
+Safe rendering using optional chaining
+
+User-friendly fallback messages
+
+🛠️ Environment Setup
+
+Create a .env file:
+
+VITE_API_BASE_URL=<backend_base_url>
+
+
+Run locally:
+
+npm install
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+🚧 Known Limitations
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Reminder notifications not implemented
 
-**Use GitHub Codespaces**
+OCR confidence may affect final accuracy
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+No offline support
 
-## What technologies are used for this project?
+🚀 Future Enhancements
 
-This project is built with:
+Medicine reminders
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Language toggle
 
-## How can I deploy this project?
+Scan history
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Caregiver access
 
-## Can I connect a custom domain to my Lovable project?
+UI accessibility improvements
+
+🧾 Frontend Summary (One Line)
+
+The MedGuard frontend guides users from prescription upload to actionable medicine safety reports through a clean, backend-driven UI.
 
 Yes, you can!
 
