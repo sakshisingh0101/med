@@ -155,6 +155,83 @@
 // };
 
 
+// export interface ApiResponse<T> {
+//   statusCode: number;
+//   message: string;
+//   data: T;
+//   success: boolean;
+// }
+
+// /* ---------- REQUEST ---------- */
+// export interface MedicineSafetyRequest {
+//   userContext: {
+//     age: number;
+//     conditions: string[];
+//     foodState: "empty" | "after" | "any";
+//     time: string;
+//   };
+//   document: {
+//     type: "PRESCRIPTION" | "MEDICINE" | "UNKNOWN";
+//     medicines: {
+//       name: string;
+//       dosage?: string;
+//       frequency?: string;
+//       durationDays?: string;
+//     }[];
+//     confidence: "low" | "medium" | "high";
+//   };
+// }
+
+// /* ---------- RESPONSE ---------- */
+// export interface MedicineSchedule {
+//   time: string;
+//   relation: string;
+//   message_en: string;
+//   message_hi: string;
+// }
+
+// export interface MedicineInfo {
+//   name: string;
+//   dosage: string;
+//   schedule: MedicineSchedule[];
+//   purpose: string;
+//   riskLevel: string;
+//   warnings: {
+//     level: string;
+//     message_en: string;
+//     message_hi: string;
+//   }[];
+// }
+
+// export interface MedicineSafetyResponseData {
+//   type: "medicine_to_actionable_plan" | "prescription_to_actionable_plan";
+//   confidence: "high" | "medium" | "low";
+//   medicines: MedicineInfo[];
+// }
+
+// /* ---------- API CALL ---------- */
+// export const checkMedicineSafety = async (
+//   request: MedicineSafetyRequest
+// ): Promise<MedicineSafetyResponseData> => {
+//   const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/process/ruleEngine`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(request),
+//     credentials: "include"
+    
+//   });
+
+//   const json: ApiResponse<MedicineSafetyResponseData> = await res.json();
+
+//   if (!json.success) {
+//     throw new Error(json.message);
+//   }
+
+//   return json.data;
+// };
+
+
+
 export interface ApiResponse<T> {
   statusCode: number;
   message: string;
@@ -194,13 +271,18 @@ export interface MedicineInfo {
   name: string;
   dosage: string;
   schedule: MedicineSchedule[];
-  purpose: string;
-  riskLevel: string;
+  purpose: string[];
+  riskLevel: "low" | "medium" | "high";
+  confidence: "low" | "medium" | "high";
+  ruleMatched: boolean;
+  fallbackReason: string | null;
   warnings: {
     level: string;
     message_en: string;
     message_hi: string;
   }[];
+  hasActivePrescription: boolean;
+  isPrescriptionFlow: boolean;
 }
 
 export interface MedicineSafetyResponseData {
@@ -213,13 +295,15 @@ export interface MedicineSafetyResponseData {
 export const checkMedicineSafety = async (
   request: MedicineSafetyRequest
 ): Promise<MedicineSafetyResponseData> => {
-  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/process/ruleEngine`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(request),
-    credentials: "include"
-    
-  });
+  const res = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/process/ruleEngine`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(request),
+      credentials: "include",
+    }
+  );
 
   const json: ApiResponse<MedicineSafetyResponseData> = await res.json();
 
