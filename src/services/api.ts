@@ -295,6 +295,7 @@ export interface MedicineSafetyResponseData {
 export const checkMedicineSafety = async (
   request: MedicineSafetyRequest
 ): Promise<MedicineSafetyResponseData> => {
+  console.log("API Request:", request);
   const res = await fetch(
     `${import.meta.env.VITE_API_BASE_URL}/process/ruleEngine`,
     {
