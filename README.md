@@ -3,7 +3,8 @@
 
 ---
 
-## 📌 Overview
+## 📌 Overview 
+## MedGuard
 
 The **MedGuard Frontend** provides an intuitive and guided user experience for uploading prescriptions, entering health context, and viewing personalized medicine safety reports.
 
